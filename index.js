@@ -13,7 +13,7 @@ const requestLogger = (request, response, next) => {
   next()
 }
 
-const unknownEndpoint = (request, response) => {
+const unknownEndpoint = (request, response, next) => {
   response.status(404).send({ error: 'unknown endpoint' })
 }
 
@@ -90,7 +90,6 @@ app.put('/api/notes/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
-app.use(unknownEndpoint)
 app.use(errorHandler)
 
 const PORT = process.env.PORT
